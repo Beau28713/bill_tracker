@@ -1,4 +1,3 @@
-from sqlite3 import DateFromTicks
 import typer
 import numpy as np
 import pandas as pd
