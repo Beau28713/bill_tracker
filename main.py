@@ -29,7 +29,6 @@ def create_df(month: str):
     df.to_csv(f"bills_by_month\{month}.csv")
 
 
-# fix this
 @app.command()
 def new_bill(month: str, bill: str, amount: float):
     bill = bill.lower()
@@ -38,6 +37,17 @@ def new_bill(month: str, bill: str, amount: float):
     df = get_db(month)
     df = pd.concat([df, new_row.to_frame().T], ignore_index=True)
     df.set_index("bill", inplace=True)
+    df.to_csv(f"bills_by_month\{month}.csv")
+    print(df)
+
+
+@app.command()
+def del_bill(month: str, bill: str):
+    bill = bill.lower()
+    month = month.lower()
+    df = get_db(month)
+    df.set_index("bill", inplace=True)
+    df = df.drop(bill)
     df.to_csv(f"bills_by_month\{month}.csv")
     print(df)
 
