@@ -1,6 +1,6 @@
-import typer
 import numpy as np
 import pandas as pd
+import typer
 
 from data import data
 
@@ -68,12 +68,11 @@ def get_bill(month_year: str, bill: str):
     print(df.loc[bill])
 
 @app.command()
-def bills_total(month_year: str, bill: str):
+def bills_total(month_year: str):
     month_year = month_year.lower()
-    bill = bill.lower()
     df = get_db(month_year)
     df.set_index("bill", inplace=True)
-    print(f"Total payout for month is: ${sum(df[bill].tolist())}")
+    print(f"Total payout for month is: $ {sum(df['payment'].tolist())}")
 
 if __name__ == "__main__":
     app()
