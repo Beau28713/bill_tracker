@@ -17,7 +17,7 @@ def create_df(month_year: str):
 
 
 @app.command()
-def new_bill(month_year_year: str, bill: str, amount: float, date: str):
+def new_bill(month_year: str, bill: str, amount: float, date: str):
     bill = bill.lower()
     month_year = month_year.lower()
     new_row = pd.Series({"bill": bill, "payment": amount, "date": date})
